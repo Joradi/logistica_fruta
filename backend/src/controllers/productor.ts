@@ -10,7 +10,7 @@ export class ProductorController
     public static async listar(req: Request, res: Response): Promise<void>
     {
         const data = await myDataSource.getRepository(Productor).find()
-        await res.send(data)
+        res.send(data)
     }
 
 
@@ -33,7 +33,7 @@ export class ProductorController
         }
 
         const data = await myDataSource.getRepository(Productor).save(req.body)
-        await res.send(data)
+        res.send(data)
     }
 
 
@@ -43,7 +43,7 @@ export class ProductorController
         console.log(req.body)
         // tarea: validar id 
         const data = await myDataSource.getRepository(Productor).save({ ...req.body, id_productor: Number(req.params.id) })
-        await res.send(data)
+        res.send(data)
     }
 
 
@@ -53,6 +53,6 @@ export class ProductorController
         console.log(req.body)
         // tarea: validar id
         const data = await myDataSource.getRepository(Productor).delete(req.params.id)
-        await res.send(data)
+        res.send(data)
     }
 }
