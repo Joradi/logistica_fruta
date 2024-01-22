@@ -10,4 +10,5 @@ export const myDataSource = new DataSource({
     entities: ['src/entity/*.ts'],
     logging: true,
     synchronize: true,
+    extra: { insecureAuth: true }
 })

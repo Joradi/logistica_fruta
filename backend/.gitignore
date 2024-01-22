@@ -3,3 +3,5 @@ node_modules
 
 # Archivos de configuración
 .env
+
+docker-compose.yaml
