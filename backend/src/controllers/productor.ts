@@ -42,8 +42,25 @@ export class ProductorController
         console.log(req.params.id)
         console.log(req.body)
         // tarea: validar id 
+        const id_productor = Number(req.params.id)
+        const productor_repository = myDataSource.getRepository(Productor);
+
+        try {
+            // Verificar si el productor existe antes de intentar actualizar
+            const productor_existente = await productor_repository.findOne(id_productor);
+    
+            if (!productor_existente) {
+                res.status(404).send({ error: 'Productor no encontrado' });
+                return;
+            }
+
         const data = await myDataSource.getRepository(Productor).save({ ...req.body, id_productor: Number(req.params.id) })
         res.send(data)
+        }
+        catch (error) {
+            console.log(error)
+            res.status(500).send({ error: 'Error al actualizar el productor' })
+        }
     }
 
 
