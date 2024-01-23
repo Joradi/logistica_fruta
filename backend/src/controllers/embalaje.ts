@@ -10,40 +10,61 @@ export class EmbalajeController
         res.send(data)
     }
 
+    
     public static async crear(req:Request, res:Response): Promise<void>
     {
         console.log(req.body)
         
         const {nombre_articulo, valor_por_unidad, id_empresa} = req.body
 
-        if(!nombre_articulo){
+        if (!nombre_articulo)
+        {
             res.status(400).send( {error: 'Falta el nombre del articulo'} )
             return
         }
-        if(!valor_por_unidad){
+
+        if (!valor_por_unidad)
+        {
             res.status(400).send( {error: 'Falta el valor de la unidad' } )
             return
         }
-        if(!id_empresa){
+
+        if (!id_empresa)
+        {
             res.status(400).send( {error: 'Falta el rut de la empresa'} )
             return
         }
+
         const data = await myDataSource.getRepository(Articulo).save(req.body)
         res.send(data)
     }
+
 
     public static async actualizar(req:Request, res:Response): Promise<void>
     {
         console.log(req.params.id)
         console.log(req.body)
+        // tarea: validar id
+        // validar que id sea numero
+        // validar que id exista
+        // validar que id sea igual o mayor a 1
+        // validar que Productor exista
+        // colocar req.params.id en una variable
         const data = await myDataSource.getRepository(Articulo).save( {...req.body, id_articulo: Number(req.params.id) } )
         res.send(data)
     }
+
 
     public static async eliminar(req:Request, res:Response): Promise<void>
      {
         console.log(req.params.id)
         console.log(req.body)
+        // tarea: validar id
+        // validar que id sea numero
+        // validar que id exista
+        // validar que id sea igual o mayor a 1
+        // validar que Productor exista
+        // colocar req.params.id en una variable
         const data = await myDataSource.getRepository(Articulo).save( {...req.body, id_articulo: Number(req.params.id) } )
         res.send(data)
      }
