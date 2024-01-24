@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { myDataSource } from '../app-data-source'
 import { Articulo } from '../entity/embalaje'
+import { Catch } from '../decorators/catch'
 
 export class EmbalajeController
 {
@@ -39,17 +40,29 @@ export class EmbalajeController
         res.send(data)
     }
 
-
+    @Catch
     public static async actualizar(req:Request, res:Response): Promise<void>
     {
         console.log(req.params.id)
         console.log(req.body)
-        // tarea: validar id
-        // validar que id sea numero
-        // validar que id exista
-        // validar que id sea igual o mayor a 1
-        // validar que Productor exista
-        // colocar req.params.id en una variable
+
+        const id_articulo = Number(req.params.id)
+
+        if(!id_articulo || isNaN(Number(id_articulo))){
+            res.status(400).send({ error:' El id de la empresa no es el valido'})
+            return
+        }
+
+        const articulo_repository = myDataSource.getRepository(Articulo)
+
+        const articulo_existente = await articulo_repository.findOne({ where: { id_articulo } } )
+
+        if(!articulo_existente)
+        {
+            res.status(400).send( { error: 'Articulo no encontrado' })
+            return
+        }
+
         const data = await myDataSource.getRepository(Articulo).save( {...req.body, id_articulo: Number(req.params.id) } )
         res.send(data)
     }
@@ -59,12 +72,25 @@ export class EmbalajeController
      {
         console.log(req.params.id)
         console.log(req.body)
-        // tarea: validar id
-        // validar que id sea numero
-        // validar que id exista
-        // validar que id sea igual o mayor a 1
-        // validar que Productor exista
-        // colocar req.params.id en una variable
+
+        
+        const id_articulo = Number(req.params.id)
+
+        if(!id_articulo || isNaN(id_articulo) || id_articulo < 1 )
+        {
+            res.status(400).send( { error: 'Id del articulo incorrecto' } )
+            return
+        }
+        
+        const articulo_repository = myDataSource.getRepository(Articulo)
+
+            const articulo_existente = await articulo_repository.findOne( { where: { id_articulo} } )
+
+            if(!articulo_existente)
+            {
+                res.status(400).send( { error: 'Articulo no encontrado' } )
+            }
+
         const data = await myDataSource.getRepository(Articulo).save( {...req.body, id_articulo: Number(req.params.id) } )
         res.send(data)
      }
