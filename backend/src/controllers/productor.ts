@@ -3,9 +3,7 @@ import { myDataSource } from '../app-data-source'
 import { Productor } from '../entity/productor'
 import { Catch } from '../decorators/catch'
 
-/**
- * Controlador de productor, tarea: implementar decorador que maneje errores en los metodos
- */
+
 export class ProductorController
 {
     @Catch

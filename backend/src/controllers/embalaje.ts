@@ -40,6 +40,7 @@ export class EmbalajeController
         res.send(data)
     }
 
+
     @Catch
     public static async actualizar(req:Request, res:Response): Promise<void>
     {
@@ -48,7 +49,8 @@ export class EmbalajeController
 
         const id_articulo = Number(req.params.id)
 
-        if(!id_articulo || isNaN(Number(id_articulo))){
+        if (!id_articulo || isNaN(Number(id_articulo)))
+        {
             res.status(400).send({ error:' El id de la empresa no es el valido'})
             return
         }
@@ -57,7 +59,7 @@ export class EmbalajeController
 
         const articulo_existente = await articulo_repository.findOne({ where: { id_articulo } } )
 
-        if(!articulo_existente)
+        if (!articulo_existente)
         {
             res.status(400).send( { error: 'Articulo no encontrado' })
             return
@@ -69,14 +71,14 @@ export class EmbalajeController
 
 
     public static async eliminar(req:Request, res:Response): Promise<void>
-     {
+    {
         console.log(req.params.id)
         console.log(req.body)
 
         
         const id_articulo = Number(req.params.id)
 
-        if(!id_articulo || isNaN(id_articulo) || id_articulo < 1 )
+        if (!id_articulo || isNaN(id_articulo) || id_articulo < 1 )
         {
             res.status(400).send( { error: 'Id del articulo incorrecto' } )
             return
@@ -84,14 +86,14 @@ export class EmbalajeController
         
         const articulo_repository = myDataSource.getRepository(Articulo)
 
-            const articulo_existente = await articulo_repository.findOne( { where: { id_articulo} } )
+        const articulo_existente = await articulo_repository.findOne( { where: { id_articulo} } )
 
-            if(!articulo_existente)
-            {
-                res.status(400).send( { error: 'Articulo no encontrado' } )
-            }
+        if (!articulo_existente)
+        {
+            res.status(400).send( { error: 'Articulo no encontrado' } )
+        }
 
         const data = await myDataSource.getRepository(Articulo).save( {...req.body, id_articulo: Number(req.params.id) } )
         res.send(data)
-     }
+    }
 }

@@ -14,6 +14,10 @@ export function Catch(target: any, propertyKey: string, descriptor: PropertyDesc
 
     // tarea reemplazar el metodo original por uno nuevo
 
+    // pista descriptor.value es el metodo original, args son los argumentos que recibe el metodo original, considerar que necesitas acceder a res para enviar el error
+    // descriptor.value = async function(...args) 
+    // {
+    // }
 
     // se retorna un nuevo descriptor al final
     return descriptor
