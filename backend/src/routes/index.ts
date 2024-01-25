@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import ProductorRoutes from './productor'
-import FrutaRoutes from './fruta'
+import ProductorRoutes from '../productor/productor.routes'
+import FrutaRoutes from '../fruta/fruta.routes'
 
 const routes = Router()
 

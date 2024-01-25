@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { myDataSource } from '../app-data-source'
-import { Fruta } from '../entity/fruta'
+import { Fruta } from './fruta.entity'
 import { Catch } from '../decorators/catch'
-import { Productor } from '../entity/productor'
+import { Productor } from '../productor/productor.entity'
 
 
 /**

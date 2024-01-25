@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
-import { Despacho } from './despacho'
-import { Fruta } from './fruta'
+import { Despacho } from '../entity/despacho'
+import { Fruta } from '../fruta/fruta.entity'
 
 @Entity()
 export class Productor 

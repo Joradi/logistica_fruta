@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, OneToOne, JoinColumn } from 'typeorm'
 import { DetalleDespacho } from './detalle_despacho'
-import { Productor } from './productor'
+import { Productor } from '../productor/productor.entity'
 import { EmpresaTransportes } from './empresa_transportes'
 import { Kilometraje } from './kilometraje'
 

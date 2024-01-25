@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { FrutaController } from '../controllers/futa'
+import { FrutaController } from './fruta.controller'
 
 const routes = Router()
 

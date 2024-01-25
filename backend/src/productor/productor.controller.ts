@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { myDataSource } from '../app-data-source'
-import { Productor } from '../entity/productor'
+import { Productor } from './productor.entity'
 import { Catch } from '../decorators/catch'
 
 
