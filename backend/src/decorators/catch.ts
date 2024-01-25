@@ -1,3 +1,4 @@
+import { Response, Request} from 'express'
 // crear decorador que reutilize el try catch de un metodo estatico de una clase
 
 /**
@@ -11,6 +12,20 @@ export function Catch(target: any, propertyKey: string, descriptor: PropertyDesc
 {
     // metodo original que se va a "decorar"
     const originalMethod = descriptor.value
+
+    descriptor.value = async function(req: Request, res: Response, ...args: any[])
+    {
+        try
+        {
+            await originalMethod.call(this, req, res, ...args)
+        }
+        catch(error)
+        {
+            console.log(error)
+            res.status(500).send({ error: 'Error en el servidor' })
+        }
+        return
+    }
 
     // tarea reemplazar el metodo original por uno nuevo
 

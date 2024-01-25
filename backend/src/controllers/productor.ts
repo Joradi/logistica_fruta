@@ -18,7 +18,7 @@ export class ProductorController
     {
         console.log(req.body)
 
-        const { nombre_productor, empresa_productor } = req.body
+        const { nombre_productor, empresa_productor }: Productor = req.body
 
         if (!nombre_productor)
         {
